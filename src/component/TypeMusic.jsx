@@ -12,7 +12,7 @@ const TypeMusic = (props) => {
         <h2>{title}</h2>
         <Row className="imgLinks py-3">
           {artistList.map((name) => {
-            return <AlbumCard artistName={name} />;
+            return <AlbumCard artistName={name} key={name.id} />;
           })}
         </Row>
       </Col>

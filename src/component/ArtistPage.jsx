@@ -4,7 +4,7 @@ import TrackCard from "./TrackCard";
 
 const ArtistPage = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [artist, setArtist] = useState({});
+  const [artist, setArtist] = useState([]);
   const [trackList, setTrackList] = useState([]);
 
   let artistId = new URLSearchParams(document.location.search).get("id");
@@ -21,7 +21,8 @@ const ArtistPage = () => {
       if (resp.ok) {
         let artistData = await resp.json();
         setArtist(artistData);
-        let trackListResponse = await fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q" + artist.name, {
+
+        let trackListResponse = await fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=" + artistData.name, {
           headers: {
             "X-RapidAPI-Key": "c47f8709a8msh68fc06fa8886e81p18e74djsn87e3ff301cd9",
             "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
@@ -48,23 +49,21 @@ const ArtistPage = () => {
       {isLoading === true ? (
         <h2>Loading...</h2>
       ) : (
-        <Row>
-          <Col xs={12} md={10} lg={10} className="mt-5">
-            <h2 className="titleMain">{artist.name}</h2>
-            <div id="followers">{artist.nb_fan}</div>
+        <Col xs={12} md={10} lg={10} className="mt-5 mainPage">
+          <h2 className="titleMain">{artist.name}</h2>
+          <div id="followers">{artist.nb_fan}</div>
 
-            <Row className="mb-3">
-              <Col xs={10} md={10} lg={10} className="offset-1 p-0">
-                <h2>Tracks</h2>
-                <Row className="pt-5 mb-5">
-                  {trackList.map((song) => {
-                    return <TrackCard track={song} />;
-                  })}
-                </Row>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+          <Row className="mb-3">
+            <Col xs={10} md={10} lg={10} className="offset-1 p-0">
+              <h2>Tracks</h2>
+              <Row className="pt-5 mb-5 imgLinks">
+                {trackList.data.map((song) => {
+                  return <TrackCard track={song} key={song.id} />;
+                })}
+              </Row>
+            </Col>
+          </Row>
+        </Col>
       )}
     </>
   );

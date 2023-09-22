@@ -45,6 +45,7 @@ const AlbumCard = (props) => {
                 ? albumData.album.title
                 : albumData.album.title.substring(0, 16) + "..."}
             </Link>
+            <br />
             <Link to={"/artist?id=" + albumData.artist.id}>Artist: {albumData.artist.name}</Link>
           </p>
         </Col>

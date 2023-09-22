@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const MyNavbar = () => {
   return (
     <Col xs={2}>
-      <Navbar variant="dark" expand="md" className="fixed-left justify-content-between text-center" id="sidebar">
+      <Navbar variant="dark" expand="md" className="fixed-left justify-content-between text-start" id="sidebar">
         <Container className="flex-wrap">
           <Navbar.Brand>
             <img src={logo} alt="Spotify_Logo" width="131" height="40" />
@@ -19,12 +19,12 @@ const MyNavbar = () => {
                 <li>
                   <Link className="ps-1 nav-link" to="/">
                     <FontAwesomeIcon icon={faHome} size="lg" />
-                    &nbsp; Home
+                    &nbsp;Home
                   </Link>
                 </li>
                 <li>
                   <Link className="nav-link" to="/library">
-                    <FontAwesomeIcon icon={faBookOpen} size="lg" /> &nbsp; Library
+                    <FontAwesomeIcon icon={faBookOpen} size="lg" /> &nbsp;Library
                   </Link>
                 </li>
                 <li>

@@ -13,6 +13,7 @@ const TrackCard = (props) => {
         <Link to={"/album?id=" + track.album.id}>
           Album: {track.album.title.lenght < 16 ? track.album.title : track.album.title.substring(0, 16) + "..."}
         </Link>
+        <br />
         <Link to={"/artist?id=" + track.artist.id}>Artist: {track.artist.name}</Link>
       </p>
     </Col>
